@@ -1,6 +1,6 @@
 from odoo import api, fields, models
 
-class PropertyType(models.Model):
+class EstatePropertyType(models.Model):
     _name="estate.property.type"
     _description = "Real Estate Property Type"
     _sql_constraints = [

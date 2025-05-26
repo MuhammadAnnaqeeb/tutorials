@@ -5,7 +5,7 @@ from datetime import date, timedelta, datetime
 from odoo.tools import float_compare
 
 
-class PropertyOffer(models.Model):
+class EstatePropertyOffer(models.Model):
     _name = "estate.property.offer"
     _description = "Real Estate Property Offer"
     _sql_constraints = [
@@ -38,8 +38,6 @@ class PropertyOffer(models.Model):
         for offer in self:
             offer_date = offer.create_date.date() if offer.create_date else fields.Date.today()
             offer.validity = (offer.date_deadline - offer_date).days
-
-
 
     @api.model
     def create(self, vals):

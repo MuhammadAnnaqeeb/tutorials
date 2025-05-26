@@ -9,7 +9,10 @@ from dateutil.relativedelta import relativedelta
 from odoo.tools.float_utils import float_compare, float_is_zero
 
 
-class Property(models.Model):
+class EstateProperty(models.Model):
+    
+
+
     _name = "estate.property"
     _description = "Real Estate Property"
     _sql_constraints = [
@@ -52,8 +55,7 @@ class Property(models.Model):
     description = fields.Text()
 
     property_type_id = fields.Many2one("estate.property.type", string="Property Type")
-    salesperson_id = fields.Many2one('res.users', string='Salesperson', index=True,
-                                     default=lambda self: self.env.user)
+    user_id = fields.Many2one('res.users', string='Salesperson', index=True, default=lambda self: self.env.user)
     buyer_id = fields.Many2one('res.partner', string='Buyer', copy=False)
     tag_ids = fields.Many2many('estate.property.tag', string="Property Tags")
     offer_ids = fields.One2many('estate.property.offer', inverse_name='property_id', string="Property Offers")
@@ -69,13 +71,13 @@ class Property(models.Model):
 
     @api.depends("offer_ids")
     def _compute_best_price(self):
-        for property in self:
-            if property.offer_ids  and (offers := property.offer_ids.mapped('price')) :
-                property.best_price = max(0, max(offers))
-                if property.state == 'new':
-                    property.state = 'offer_received'
+        for prop in self:
+            if prop.offer_ids  and (offers := prop.offer_ids.mapped('price')) :
+                prop.best_price = max(0, max(offers))
+                if prop.state == 'new':
+                    prop.state = 'offer_received'
             else:
-                property.best_price = 0
+                prop.best_price = 0
 
     @api.onchange("garden")
     def _onchange_garden(self):
@@ -90,16 +92,16 @@ class Property(models.Model):
 
     @api.constrains('selling_price', 'expected_price')
     def _check_selling_price(self):
-        for property in self:
-            if (not float_is_zero(property.selling_price, precision_digits=2) and
-                    float_compare(property.selling_price, 0.9 * property.expected_price, precision_digits=2) == -1):
+        for prop in self:
+            if (not float_is_zero(prop.selling_price, precision_digits=2) and
+                    float_compare(prop.selling_price, 0.9 * prop.expected_price, precision_digits=2) == -1):
                 raise ValidationError("Selling Price Can not be less than 90% of expected price")
 
 
     @api.ondelete(at_uninstall=False)
     def _unlink_if_state_new_or_canceled(self):
-        for property in self:
-            if property.state not in ['new', 'canceled']:
+        for prop in self:
+            if prop.state not in ['new', 'canceled']:
                 raise UserError("Cannot delete property unless new or cancelled.")
 
     def action_sold(self):
