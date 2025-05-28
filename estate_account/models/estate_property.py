@@ -7,9 +7,9 @@ class Property(models.Model):
 
     def action_sold(self):
         # print("overriden method")
-        journal = self.env["account.journal"].search([("type", "=", "sale")], limit=1)
+        journal = self.env["account.journal"].sudo().search([("type", "=", "sale")], limit=1)
         for prop in self:
-            account_move = self.env["account.move"].create({
+            account_move = self.env["account.move"].sudo().create({
 
                 'partner_id': prop.buyer_id.id,
                 'move_type': 'out_invoice',
