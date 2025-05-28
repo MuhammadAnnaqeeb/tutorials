@@ -8,8 +8,12 @@ class Property(models.Model):
     def action_sold(self):
         # print("overriden method")
         journal = self.env["account.journal"].sudo().search([("type", "=", "sale")], limit=1)
+        current_user =self.env.user
         for prop in self:
-            account_move = self.env["account.move"].sudo().create({
+
+            print(" reached ".center(100, '='))
+            self.env["account.move"].check_access('create')
+            account_move = self.env["account.move"].create({
 
                 'partner_id': prop.buyer_id.id,
                 'move_type': 'out_invoice',
