@@ -2,10 +2,14 @@
 <templates xml:space="preserve">
 
     <t t-name="awesome_owl.card">
-        <div class="p-3">
-            <Card title="card 1" content="content of card1"/>
-            <Card title="card 2" content="content of card2"/>
-        </div>
-    </t>
+    <div class="card d-inline-block m-2" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title"><t t-esc="props.title"/></h5>
+        <p class="card-text">
+         <t t-esc="props.content"/>
+        </p>
+    </div>
+</div>
+</t>
 
 </templates>
