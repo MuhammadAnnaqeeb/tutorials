@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-name="oxp.WebClient">
-        <Navbar />
+        <Navbar currentApp="'todoo'"/>
         <div class="p-3">
-            content
+            <TodoList/>
         </div>
     </t>
 </templates>
