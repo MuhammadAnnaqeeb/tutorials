@@ -1,6 +1,6 @@
 import { Component, onMounted, useState, useRef } from "@odoo/owl";
 import {TodoItem} from "./todo_item"
-
+import { useAutoFocus } from "../../utils";
 export class TodoList extends Component{
     static template = "oxp.TodoList";
     static components = {TodoItem};
@@ -10,10 +10,7 @@ export class TodoList extends Component{
             {id: 2, description: "write tutorial", isCompleted: true},
             {id: 3, description: "buy milk", isCompleted: false},
         ]);
-        const ref = useRef("input");
-        onMounted(()=> {
-            ref.el.focus();
-        });
+        useAutoFocus("input");
     }
 
     addTodo(ev){
