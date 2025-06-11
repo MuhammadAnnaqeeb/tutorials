@@ -5,10 +5,11 @@ export class TodoList extends Component{
     static template = "oxp.TodoList";
     static components = {TodoItem};
     setup(){
-        this.todos = [
+        this.nextId=4;
+        this.todos = useState([
             {id: 2, description: "write tutorial", isCompleted: true},
             {id: 3, description: "buy milk", isCompleted: false},
-        ];
+        ]);
     }
 
     addTodo(ev){
@@ -18,7 +19,7 @@ export class TodoList extends Component{
                 description: ev.target.value,
                 isCompleted: false,
             })
-            ev.target.value="";
+            ev.target.value = "";
         }
     }
 }
