@@ -1,4 +1,4 @@
-import { Component, useState } from "@odoo/owl";
+import { Component, onMounted, useState, useRef } from "@odoo/owl";
 import {TodoItem} from "./todo_item"
 
 export class TodoList extends Component{
@@ -10,6 +10,10 @@ export class TodoList extends Component{
             {id: 2, description: "write tutorial", isCompleted: true},
             {id: 3, description: "buy milk", isCompleted: false},
         ]);
+        const ref = useRef("input");
+        onMounted(()=> {
+            ref.el.focus();
+        });
     }
 
     addTodo(ev){
