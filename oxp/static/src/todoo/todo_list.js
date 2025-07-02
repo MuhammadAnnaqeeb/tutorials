@@ -6,10 +6,7 @@ export class TodoList extends Component{
     static components = {TodoItem};
     setup(){
         this.nextId=4;
-        this.todos = useState([
-            {id: 2, description: "write tutorial", isCompleted: true},
-            {id: 3, description: "buy milk", isCompleted: false},
-        ]);
+        this.todos = useState([]);
         useAutoFocus("input");
     }
 
