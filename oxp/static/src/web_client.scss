@@ -1,0 +1,20 @@
+body{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.o-action {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    .o-action-panel{
+        height:40px;
+    }
+
+    .o-content{
+        background-color: var(--bs-secondry);
+        flex-grow: 1;
+    }
+}
