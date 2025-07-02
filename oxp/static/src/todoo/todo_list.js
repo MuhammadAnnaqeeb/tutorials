@@ -4,6 +4,8 @@ import { useAutoFocus } from "../utils";
 export class TodoList extends Component{
     static template = "oxp.TodoList";
     static components = {TodoItem};
+    static props = {name: String}; 
+
     setup(){
         this.nextId=4;
         this.todos = useState([]);
