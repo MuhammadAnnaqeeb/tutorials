@@ -4,7 +4,7 @@
     <t t-name="oxp.Contacts">
         <div class="o-action">
             <div class="o-control-panel d-flex align-items-center">
-            Contacts
+                Contacts
             </div>
             <div class="o-content">
             </div>

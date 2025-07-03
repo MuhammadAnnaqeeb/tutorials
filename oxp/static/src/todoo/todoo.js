@@ -12,6 +12,6 @@ export class Todoo extends Component{
 
     addNewList(){
         const id = this.nextId++;
-        this.lists.push({id, name:`List ${id}`});
+        this.lists.push({ id, name: `List ${id}` });
     }
 }

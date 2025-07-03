@@ -14,7 +14,7 @@ export class WebClient extends Component {
         this.apps = [
             {id: "todoo", name: "Todoo"},
             {id: "dashoard", name:"Dashboard"},
-            {id: "cotacts", name:"Contacts"},
+            {id: "contacts", name:"Contacts"},
         ];
         this.state =useState({
             currentApp: "todoo",
